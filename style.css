@@ -1,0 +1,255 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  font-family: Arial, sans-serif;
+  color: white;
+  overflow: hidden;
+}
+
+.game-wrapper {
+  width: min(94vw, 460px);
+  text-align: center;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+h1 {
+  font-size: 22px;
+}
+
+.stats {
+  display: flex;
+  gap: 12px;
+  font-size: 14px;
+}
+
+.stats span {
+  background: rgba(255,255,255,.1);
+  padding: 7px 9px;
+  border-radius: 8px;
+}
+
+#game {
+  width: 100%;
+}
+
+.road {
+  position: relative;
+  width: 100%;
+  height: min(78vh, 680px);
+  min-height: 500px;
+  overflow: hidden;
+  border-left: 7px solid #f8fafc;
+  border-right: 7px solid #f8fafc;
+  border-radius: 12px;
+  background:
+    linear-gradient(90deg,
+      #475569 0 2%,
+      #30343b 2% 32.5%,
+      #30343b 33.5% 65.5%,
+      #30343b 66.5% 98%,
+      #475569 98% 100%);
+  box-shadow: 0 15px 40px rgba(0,0,0,.4);
+}
+
+.lane-line {
+  position: absolute;
+  top: -120px;
+  bottom: -120px;
+  width: 7px;
+  background: repeating-linear-gradient(
+    to bottom,
+    #f8fafc 0 65px,
+    transparent 65px 125px
+  );
+  opacity: .9;
+  animation: roadMove .65s linear infinite;
+}
+
+.line1 { left: 33.33%; }
+.line2 { left: 66.66%; }
+.line3 { display: none; }
+
+@keyframes roadMove {
+  to { transform: translateY(125px); }
+}
+
+.car {
+  position: absolute;
+  width: 58px;
+  height: 105px;
+  border-radius: 16px 16px 10px 10px;
+  z-index: 5;
+  box-shadow: inset 0 -8px 0 rgba(0,0,0,.18), 0 5px 12px rgba(0,0,0,.4);
+}
+
+.player-car {
+  left: calc(50% - 29px);
+  bottom: 28px;
+  background: linear-gradient(90deg, #dc2626, #ef4444, #b91c1c);
+}
+
+.window {
+  position: absolute;
+  left: 9px;
+  top: 18px;
+  width: 40px;
+  height: 29px;
+  border-radius: 9px 9px 5px 5px;
+  background: linear-gradient(135deg, #bae6fd, #334155);
+  border: 2px solid rgba(255,255,255,.45);
+}
+
+.light {
+  position: absolute;
+  bottom: 8px;
+  width: 10px;
+  height: 7px;
+  border-radius: 3px;
+  background: #fef08a;
+  box-shadow: 0 0 8px #fde047;
+}
+.left-light { left: 9px; }
+.right-light { right: 9px; }
+
+.wheel {
+  position: absolute;
+  width: 9px;
+  height: 23px;
+  background: #111827;
+  border-radius: 5px;
+}
+.w1 { left: -6px; top: 22px; }
+.w2 { right: -6px; top: 22px; }
+
+.enemy {
+  position: absolute;
+  width: 58px;
+  height: 105px;
+  top: -125px;
+  border-radius: 16px 16px 10px 10px;
+  z-index: 4;
+  box-shadow: inset 0 -8px 0 rgba(0,0,0,.2), 0 5px 12px rgba(0,0,0,.35);
+}
+
+.enemy::before {
+  content: "";
+  position: absolute;
+  left: 9px;
+  top: 18px;
+  width: 40px;
+  height: 29px;
+  border-radius: 9px 9px 5px 5px;
+  background: linear-gradient(135deg, #cbd5e1, #334155);
+  border: 2px solid rgba(255,255,255,.35);
+}
+
+.enemy::after {
+  content: "";
+  position: absolute;
+  left: -6px;
+  top: 22px;
+  width: 9px;
+  height: 23px;
+  border-radius: 5px;
+  background: #111827;
+  box-shadow: 67px 0 #111827;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 12px;
+}
+
+.controls button, .panel button {
+  border: 0;
+  cursor: pointer;
+  border-radius: 12px;
+  color: white;
+  background: #2563eb;
+  font-weight: bold;
+}
+
+.controls button {
+  width: 90px;
+  height: 52px;
+  font-size: 25px;
+  touch-action: manipulation;
+}
+
+.controls button:active, .panel button:active {
+  transform: scale(.96);
+}
+
+.hint {
+  margin-top: 9px;
+  font-size: 12px;
+  color: #cbd5e1;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(2,6,23,.68);
+  z-index: 20;
+}
+
+.panel {
+  width: 85%;
+  padding: 28px 20px;
+  background: rgba(15,23,42,.96);
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 18px;
+  box-shadow: 0 20px 50px rgba(0,0,0,.5);
+}
+
+.panel h2 {
+  margin-bottom: 15px;
+  font-size: 28px;
+}
+
+.panel p {
+  margin: 8px 0;
+  color: #cbd5e1;
+  line-height: 1.4;
+}
+
+.panel button {
+  margin-top: 18px;
+  padding: 13px 22px;
+  font-size: 16px;
+}
+
+.hidden {
+  display: none;
+}
+
+@media (max-width: 500px) {
+  .game-wrapper { width: 96vw; }
+  .road {
+    height: 70vh;
+    min-height: 470px;
+  }
+  h1 { font-size: 18px; }
+  .stats { font-size: 12px; }
+}

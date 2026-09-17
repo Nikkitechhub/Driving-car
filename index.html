@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🚗 Highway Racer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="game-wrapper">
+    <div class="topbar">
+      <h1>🚗 Highway Racer</h1>
+      <div class="stats">
+        <span>Score: <b id="score">0</b></span>
+        <span>Best: <b id="best">0</b></span>
+      </div>
+    </div>
+
+    <div id="game">
+      <div class="road">
+        <div class="lane-line line1"></div>
+        <div class="lane-line line2"></div>
+        <div class="lane-line line3"></div>
+
+        <div id="player" class="car player-car">
+          <div class="window"></div>
+          <div class="light left-light"></div>
+          <div class="light right-light"></div>
+          <div class="wheel w1"></div>
+          <div class="wheel w2"></div>
+        </div>
+
+        <div id="enemies"></div>
+
+        <div id="startScreen" class="overlay">
+          <div class="panel">
+            <h2>🏁 Highway Racer</h2>
+            <p>Use <b>← →</b> or <b>A / D</b> to move.</p>
+            <p>Avoid the traffic and survive as long as possible!</p>
+            <button id="startBtn">START GAME</button>
+          </div>
+        </div>
+
+        <div id="gameOver" class="overlay hidden">
+          <div class="panel">
+            <h2>💥 GAME OVER</h2>
+            <p>Your score: <b id="finalScore">0</b></p>
+            <button id="restartBtn">PLAY AGAIN</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button id="leftBtn" aria-label="Move left">⬅️</button>
+      <button id="rightBtn" aria-label="Move right">➡️</button>
+    </div>
+
+    <p class="hint">Keyboard: ← → / A D &nbsp; • &nbsp; Mobile: use the buttons</p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
